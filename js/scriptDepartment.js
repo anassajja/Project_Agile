@@ -1,12 +1,12 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const departmentList = document.getElementById('departmentList');
-    const saveButton = document.getElementById('saveButton');
-    const departmentName = document.getElementById('departmentName');
-    const departmentDescription = document.getElementById('departmentDescription');
-    const deleteModal = document.getElementById('deleteModal');
-    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
-    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
-    const editModal = document.getElementById('editModal'); 
+document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded event ensures the script runs after the HTML has been loaded
+    const departmentList = document.getElementById('departmentList'); // Get the department list element
+    const saveButton = document.getElementById('saveButton');   // Get the save button element
+    const departmentName = document.getElementById('departmentName');   // Get the department name element
+    const departmentDescription = document.getElementById('departmentDescription');     // Get the department description element
+    const deleteModal = document.getElementById('deleteModal');     // Get the delete modal element
+    const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');       // Get the confirm delete button element
+    const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');     // Get the cancel delete button element
+    const editModal = document.getElementById('editModal');         // Get the edit modal element
     const modalDepartmentName = document.getElementById('modalDepartmentName');
     const modalDepartmentDescription = document.getElementById('modalDepartmentDescription');
     const confirmEditBtn = document.getElementById('confirmEditBtn');
@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', function () {
     let editId = null;
 
     // Fetch and display departments
-    function fetchDepartments() {
-        fetch('php/departments.php')
+    function fetchDepartments() { // Function to fetch and display departments
+        fetch('../php/department/get_departments.php') // Fetch departments from the server
             .then(response => response.json())
             .then(data => {
                 departmentList.innerHTML = '';
@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const description = departmentDescription.value.trim();
         if (!name) return alert('Le nom du département est obligatoire.');
 
-        const url = editId ? 'php/edit_department.php' : 'php/add_department.php';
+        const url = editId ? '../php/department/edit_department.php' : 'php/department/add_department.php';
         const data = { id: editId, name, description };
 
         fetch(url, {
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Confirm delete
     confirmDeleteBtn.addEventListener('click', () => {
         const id = confirmDeleteBtn.dataset.id;
-        fetch('php/delete_department.php', {
+        fetch('../php/department/delete_department.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id }),
@@ -122,7 +122,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!name) return alert('Le nom du département est obligatoire.');
 
         const data = { id: editId, name, description };
-        fetch('php/edit_department.php', {
+        fetch('../php/department/edit_department.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),

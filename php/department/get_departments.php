@@ -17,7 +17,7 @@ try {
         // Return departments as JSON
         echo json_encode($departments);
     } else {
-        // If the query failed
+        // If the query failed, return an error message
         echo json_encode(['error' => 'Failed to fetch departments.']);
     }
 } catch (PDOException $e) {

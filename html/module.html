@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Modules</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Modules</h1>
+    </header>
+
+    <!-- Form for Adding/Editing Departments -->
+    <section id="form-container" aria-labelledby="form-heading">
+        <h2 id="form-heading">Ajouter / Modifier un Module</h2>
+        <form id="departmentForm">
+            <label for="departmentName">
+                Nom du Module <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="departmentName" placeholder="Entrez le nom du Module" required aria-required="true">
+            </label>
+            <label for="departmentDescription">
+                Description
+                <input type="text" id="departmentDescription" placeholder="Entrez la description du Module">
+            </label>
+            <button type="button" id="saveButton" class="btn-primary">Enregistrer</button>
+        </form>
+    </section>
+
+    <!-- List of Departments -->
+    <section aria-labelledby="departmentListHeading">
+        <h2 id="departmentListHeading">Liste des Modules</h2>
+        <ul id="departmentList" class="department-list" role="list"></ul>
+    </section>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" role="dialog" aria-labelledby="deleteModalHeading" aria-hidden="true">
+        <div class="modal-content">
+            <h3 id="deleteModalHeading">Confirmer la Suppression</h3>
+            <p>Êtes-vous sûr de vouloir supprimer ce Module ? Cette action est irréversible.</p>
+            <button id="confirmDeleteBtn" class="btn-danger">Confirmer</button>
+            <button id="cancelDeleteBtn" class="btn-secondary">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Modifier un Module</h3>
+            <label for="modalDepartmentName">Nom du Module <span class="required">*</span></label>
+            <input type="text" id="modalDepartmentName" placeholder="Entrez le nom du Module" required>
+            <label for="modalDepartmentDescription">Description</label>
+            <input type="text" id="modalDepartmentDescription" placeholder="Entrez la description du département">
+            <button id="confirmEditBtn">Confirmer</button>
+            <button id="cancelEditBtn">Annuler</button>
+        </div>
+    </div>
+    
+    <script src="../js/scriptModule.js"></script>
+</body>
+</html>
