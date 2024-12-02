@@ -1,5 +1,5 @@
 <?php
-session_start();  // Ensure the session is started
+session_start();  // Ensure the session is started 
 
 // Check if session variables are set before accessing them
 $email = isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : 'Guest'; // Set the email to 'Guest' if not set

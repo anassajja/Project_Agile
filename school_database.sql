@@ -76,6 +76,27 @@ INSERT INTO students (first_name, last_name, email, department_id) VALUES
 ('Ivy', 'Chen', 'ivy.chen@example.com', 4),
 ('Jack', 'Wang', 'jack.wang@example.com', 5);
 
+-- Create the 'teachers' table
+CREATE TABLE IF NOT EXISTS teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    department_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- Insert fake data into the 'teachers' table
+INSERT INTO teachers (first_name, last_name, email, department_id) VALUES 
+('Olivia', 'Taylor', 'olivia.taylor@example.com', 1),
+('Peter', 'Anderson', 'peter.anderson@example.com', 2),
+('Quinn', 'Clark', 'quinn.clark@example.com', 3),
+('Rachel', 'Evans', 'rached.evans@example.com', 4),
+('Sam', 'Fisher', 'sam.fisher@example.com', 5),
+('Tina', 'Garcia', 'tina.garcia@example.com', 1),
+('Ulysses', 'Hernandez', 'uly.hernandez@example.com', 2);
+
+
 -- Create the 'absences' table
 CREATE TABLE IF NOT EXISTS absences (
     id INT AUTO_INCREMENT PRIMARY KEY,

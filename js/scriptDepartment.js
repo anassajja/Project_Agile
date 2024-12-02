@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded event ensures the script runs after the HTML has been loaded
     const departmentList = document.getElementById('departmentList'); // Get the department list element
     const saveButton = document.getElementById('saveButton');   // Get the save button element
-    const departmentName = document.getElementById('departmentName');   // Get the department name element
+    const departmentName = document.getElementById('departmentName');   // Get the department name element 
     const departmentDescription = document.getElementById('departmentDescription');     // Get the department description element
     const deleteModal = document.getElementById('deleteModal');     // Get the delete modal element
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');       // Get the confirm delete button element
@@ -49,12 +49,15 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
 
     // Save department (add new or update existing)
     saveButton.addEventListener('click', () => {
-        const name = departmentName.value.trim();
+        const name = departmentName.value.trim(); // Get the department name value and trim any leading or trailing whitespace
         const description = departmentDescription.value.trim();
         if (!name) return alert('Le nom du département est obligatoire.');
 
-        const url = editId ? '../php/department/edit_department.php' : 'php/department/add_department.php';
+        const url = editId ? '../php/department/edit_department.php' : '../php/department/add_department.php'; // Determine the URL based on whether we are adding a new department or editing an existing one
+        console.log(url);
+        console.log(editId);
         const data = { id: editId, name, description };
+        console.log(data);
 
         fetch(url, {
             method: 'POST',
@@ -62,12 +65,14 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
             body: JSON.stringify(data),
         })
             .then(response => response.json())
-            .then(data => {
-                if (data.success) {
+            .then(data => { // Handle the response
+                if (data.success) { // If the response is successful, fetch and display departments
                     fetchDepartments();
                     departmentName.value = '';
                     departmentDescription.value = '';
                     editId = null;
+                    console.log(data);
+                    console.log(data.success);
                 } else {
                     alert(data.error);
                 }
@@ -108,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
 
     // Open edit modal
     function openEditModal(id, name, description) {
-        editId = id;
+        editId = id; // Set the ID of the department to be edited
         modalDepartmentName.value = name; // Populate fields in the modal
         modalDepartmentDescription.value = description;
 
@@ -121,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
         const description = modalDepartmentDescription.value.trim();
         if (!name) return alert('Le nom du département est obligatoire.');
 
-        const data = { id: editId, name, description };
+        const data = { id: editId, name, description }; // Prepare data to be sent to the server
         fetch('../php/department/edit_department.php', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
