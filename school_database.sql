@@ -76,51 +76,6 @@ INSERT INTO students (first_name, last_name, email, department_id) VALUES
 ('Ivy', 'Chen', 'ivy.chen@example.com', 4),
 ('Jack', 'Wang', 'jack.wang@example.com', 5);
 
--- Create the 'teachers' table
-CREATE TABLE IF NOT EXISTS teachers (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255) NOT NULL,
-    last_name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    department_id INT,
-    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL ON UPDATE CASCADE
-);
-
--- Insert fake data into the 'teachers' table
-INSERT INTO teachers (first_name, last_name, email, department_id) VALUES 
-('Olivia', 'Taylor', 'olivia.taylor@example.com', 1),
-('Peter', 'Anderson', 'peter.anderson@example.com', 2),
-('Quinn', 'Clark', 'quinn.clark@example.com', 3),
-('Rachel', 'Evans', 'rached.evans@example.com', 4),
-('Sam', 'Fisher', 'sam.fisher@example.com', 5),
-('Tina', 'Garcia', 'tina.garcia@example.com', 1),
-('Ulysses', 'Hernandez', 'uly.hernandez@example.com', 2);
-
-
--- Create the 'absences' table
-CREATE TABLE IF NOT EXISTS absences (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT,
-    date DATE NOT NULL,
-    justified BOOLEAN DEFAULT 0, -- Indicates if the absence is justified (0 for No, 1 for Yes)
-    justification TEXT,          -- Detailed explanation for justification
-    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
--- Insert fake data into the 'absences' table
-INSERT INTO absences (student_id, date, justified, justification) VALUES 
-(1, '2021-10-01', 0, 'Student was sick'),
-(2, '2021-10-02', 1, 'Student had a family emergency'),
-(3, '2021-10-03', 0, 'Student overslept'),
-(4, '2021-10-04', 1, 'Student had a doctor''s appointment'),
-(5, '2021-10-05', 0, 'Student missed the bus'),
-(6, '2021-10-06', 1, 'Student had a job interview'),
-(7, '2021-10-07', 0, 'Student forgot about the class'),
-(8, '2021-10-08', 1, 'Student had a court appearance'),
-(9, '2021-10-09', 0, 'Student was out of town'),
-(10, '2021-10-10', 1, 'Student had a family gathering');
-
-
 -- Create the 'modules' table
 CREATE TABLE IF NOT EXISTS modules (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -154,6 +109,51 @@ INSERT INTO elements (name, module_id) VALUES
 ('Linear Algebra', 3),
 ('Quantum Computing', 4),
 ('Investment Analysis', 5);
+
+-- Create the 'teachers' table
+CREATE TABLE IF NOT EXISTS teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    department_id INT,
+    element_id INT,
+    FOREIGN KEY (department_id) REFERENCES departments(id) ON DELETE SET NULL ON UPDATE CASCADE,
+    FOREIGN KEY (element_id) REFERENCES elements(id) ON DELETE SET NULL ON UPDATE CASCADE
+);
+
+-- Insert fake data into the 'teachers' table
+INSERT INTO teachers (first_name, last_name, email, department_id, element_id) VALUES 
+('Olivia', 'Taylor', 'olivia.taylor@example.com', 1, NULL),
+('Peter', 'Anderson', 'peter.anderson@example.com', 2, NULL),
+('Quinn', 'Clark', 'quinn.clark@example.com', 3, NULL),
+('Rachel', 'Evans', 'rachel.evans@example.com', 4, NULL),
+('Sam', 'Fisher', 'sam.fisher@example.com', 5, NULL),
+('Tina', 'Garcia', 'tina.garcia@example.com', 1, NULL),
+('Ulysses', 'Hernandez', 'uly.hernandez@example.com', 2, NULL);
+
+-- Create the 'absences' table
+CREATE TABLE IF NOT EXISTS absences (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    date DATE NOT NULL,
+    justified BOOLEAN DEFAULT 0, -- Indicates if the absence is justified (0 for No, 1 for Yes)
+    justification TEXT,          -- Detailed explanation for justification
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+-- Insert fake data into the 'absences' table
+INSERT INTO absences (student_id, date, justified, justification) VALUES 
+(1, '2021-10-01', 0, 'Student was sick'),
+(2, '2021-10-02', 1, 'Student had a family emergency'),
+(3, '2021-10-03', 0, 'Student overslept'),
+(4, '2021-10-04', 1, 'Student had a doctor''s appointment'),
+(5, '2021-10-05', 0, 'Student missed the bus'),
+(6, '2021-10-06', 1, 'Student had a job interview'),
+(7, '2021-10-07', 0, 'Student forgot about the class'),
+(8, '2021-10-08', 1, 'Student had a court appearance'),
+(9, '2021-10-09', 0, 'Student was out of town'),
+(10, '2021-10-10', 1, 'Student had a family gathering');
 
 -- Create the 'TP_Groups' table
 CREATE TABLE IF NOT EXISTS TP_Groups (
@@ -196,4 +196,3 @@ INSERT INTO TD_Groups (name, module_id) VALUES
 ('Group 8', 4),
 ('Group 9', 5),
 ('Group 10', 5);
-
