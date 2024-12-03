@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Enseignants</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Enseignants</h1>
+    </header>
+
+    <!-- Form for Adding/Editing Departments -->
+    <section id="form-container" aria-labelledby="form-heading">
+        <h2 id="form-heading">Ajouter / Modifier un enseignant</h2>
+        <form id="enseignantForm">
+            <label for="enseignantLast_name">
+                Nom d'Enseignant <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="enseignantLast_name" placeholder="Entrez le nom d'enseignant" required aria-required="true">
+            </label>
+            <label for="enseignantFirst_name">
+                Prenom d'Enseignant <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="enseignantFirst_name" placeholder="Entrez le prenom d'enseignant" required aria-required="true">
+            </label>
+            <label for="enseignantEmail">
+                Email d'Enseignant <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="enseignantEmail" placeholder="Entrez l'email d'enseignant">
+            </label>
+            <label for="enseignantDepartment">
+                Departement d'Enseignant <span class="required" aria-hidden="true">*</span>
+                <select id="enseignantDepartment" required aria-required="true">
+                    <option value="">Sélectionnez un département</option>
+                    <option value="1">Informatique</option>
+                    <option value="2">Mathematique</option>
+                    <option value="3">Physique</option>
+                    <option value="4">Gestion Et Commerce</option>
+                    <option value="5">Ingegnerie</option>
+                </select>
+            </label>
+            <button type="button" id="saveButton" class="btn-primary">Enregistrer</button>
+        </form>
+    </section>
+
+    <!-- Teacher Assignment to elements -->
+     <section id="form-container" aria-labelledby="form-heading">
+        <h2 id="form-heading">Assigner un enseignant à un element de module</h2>
+        <form id="enseignantForm">
+            <label for="assignEnseignantId">
+                L'enseignant <span class="required" aria-hidden="true">*</span>
+                <select id="assignEnseignantId" required aria-required="true">
+                    <option value="">Sélectionnez un enseignant</option>
+                    <option value="1">M. Taylor</option>
+                    <option value="2">M. Anderson</option>
+                    <option value="3">Mme. Clark</option>
+                    <option value="4">M. Evans</option>
+                    <option value="5">M. Fisher </option>
+                    <option value="6">Mme. Garcia</option>
+                    <option value="7">Mme. Hernandez</option>
+                    <option value="8">M. AJJA</option>
+                </select>
+            </label>
+            <label for="assignElementId">
+                Element de module <span class="required" aria-hidden="true">*</span>
+                <select id="assignElementId" required aria-required="true">
+                    <option value="">Sélectionnez un element de module</option>
+                    <option value="1">Introduction to Programming</option>
+                    <option value="2">Deep Learning</option>
+                    <option value="3">Linear Algebra</option>
+                    <option value="4">Quantum Computing</option>
+                    <option value="5">Investment Analysis</option>
+                </select>
+            </label>
+            <button type="button" id="assignButton" class="btn-primary">Enregistrer</button>
+        </form>
+    </section>
+
+    <!-- Teacher Unassignment from elements -->
+    <section id="form-container" aria-labelledby="form-heading">
+        <h2 id="form-heading">Désaffecter un enseignant d'un élément de module</h2>
+        <form id="unassignForm">
+            <label for="unassignEnseignantId">
+                L'enseignant <span class="required" aria-hidden="true">*</span>
+                <select id="unassignEnseignantId" required aria-required="true">
+                    <option value="">Sélectionnez un enseignant</option>
+                    <option value="1">M. Taylor</option>
+                    <option value="2">M. Anderson</option>
+                    <option value="3">Mme. Clark</option>
+                    <option value="4">M. Evans</option>
+                    <option value="5">M. Fisher </option>
+                    <option value="6">Mme. Garcia</option>
+                    <option value="7">Mme. Hernandez</option>
+                    <option value="8">M. AJJA</option>
+                </select>
+            </label>
+            <button type="button" id="unassignButton" class="btn-primary">Désaffecter</button>
+        </form>
+    </section>
+
+    <!-- List of Enseignants -->
+    <section aria-labelledby="enseignantListHeading">
+        <h2 id="enseignantListHeading">Liste des Enseignants</h2>
+        <ul id="enseignantList" class="enseignant-list" role="list"></ul>
+    </section>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" role="dialog" aria-labelledby="deleteModalHeading" aria-hidden="true">
+        <div class="modal-content">
+            <h3 id="deleteModalHeading">Confirmer la Suppression</h3>
+            <p>Êtes-vous sûr de vouloir supprimer cet enseignant ? Cette action est irréversible.</p>
+            <button id="confirmDeleteBtn" class="btn-danger">Confirmer</button>
+            <button id="cancelDeleteBtn" class="btn-secondary">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Modifier un Enseignant</h3>
+            <label for="modalEnseignantLastName">Nom d'Enseignant&nbsp;<span class="required">*</span></label>
+            <input type="text" id="modalEnseignantLastName" placeholder="Entrez le nom d'Enseignant" required>
+            <label for="modalEnseignantFirstName">Prenom d'Enseignant&nbsp;<span class="required">*</span></label>
+            <input type="text" id="modalEnseignantFirstName" placeholder="Entrez le prenom d'Enseignant" required>
+            <label for="modalEnseignantEmail">Email d'Enseignant&nbsp;<span class="required"></span></label>
+            <input type="email" id="modalEnseignantEmail" placeholder="Entrez l'email d'Enseignant'">
+            <label for="modalEnseignantDepartment">Departement d'Enseignant&nbsp;<span class="required">*</span></label>
+            <select id="modalEnseignantDepartment" required>
+                <option value="">Sélectionnez un département</option>
+                <option value="1">Informatique</option>
+                <option value="2">Mathematique</option>
+                <option value="3">Physique</option>
+                <option value="4">Gestion Et Commerce</option>
+                <option value="5">Ingegnerie</option>
+            </select>
+            <button id="confirmEditBtn" class="btn-danger">Confirmer</button>
+            <button id="cancelEditBtn" class="btn-secondary">Annuler</button>
+        </div>
+    </div>
+    
+    <script src="../js/scriptEnseignant.js"></script>
+</body>
+</html>

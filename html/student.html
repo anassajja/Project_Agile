@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Etudiants</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Gestion des Etudiants</h1>
+    </header>
+
+    <!-- Form for Adding/Editing Departments -->
+    <section id="form-container" aria-labelledby="form-heading">
+        <h2 id="form-heading">Ajouter / Modifier un etudiant</h2>
+        <form id="etudiantForm">
+            <label for="etudiantLast_name">
+                Nom d'Etudiant <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="etudiantLast_name" placeholder="Entrez le nom d'etudiant" required aria-required="true">
+            </label>
+            <label for="etudiantFirst_name">
+                Prenom d'Etudiant <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="etudiantFirst_name" placeholder="Entrez le prenom d'etudiant" required aria-required="true">
+            </label>
+            <label for="etudiantEmail">
+                Email d'Etudiant <span class="required" aria-hidden="true">*</span>
+                <input type="text" id="etudiantEmail" placeholder="Entrez l'email d'etudiant">
+            </label>
+            <label for="etudiantDepartment">
+                Departement d'Etudiant <span class="required" aria-hidden="true">*</span>
+                <select id="etudiantDepartment" required aria-required="true">
+                    <option value="">Sélectionnez un département</option>
+                    <option value="1">Informatique</option>
+                    <option value="2">Mathematique</option>
+                    <option value="3">Physique</option>
+                    <option value="4">Gestion Et Commerce</option>
+                    <option value="5">Ingegnerie</option>
+                </select>
+            <button type="button" id="saveButton" class="btn-primary">Enregistrer</button>
+        </form>
+    </section>
+
+    <!-- List of Etudiants -->
+    <section aria-labelledby="etudiantListHeading">
+        <h2 id="etudiantListHeading">Liste des Etudiants</h2>
+        <ul id="etudiantList" class="etudiant-list" role="list"></ul>
+    </section>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="modal" role="dialog" aria-labelledby="deleteModalHeading" aria-hidden="true">
+        <div class="modal-content">
+            <h3 id="deleteModalHeading">Confirmer la Suppression</h3>
+            <p>Êtes-vous sûr de vouloir supprimer cet etudiant ? Cette action est irréversible.</p>
+            <button id="confirmDeleteBtn" class="btn-danger">Confirmer</button>
+            <button id="cancelDeleteBtn" class="btn-secondary">Annuler</button>
+        </div>
+    </div>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h3>Modifier un Etudiant</h3>
+            <label for="modalEtudiantLastName">Nom d'Etudiant&nbsp;<span class="required">*</span></label>
+            <input type="text" id="modalEtudiantLastName" placeholder="Entrez le nom d'etudiant" required>
+            <label for="modalEtudiantFirstName">Prenom d'Etudiant&nbsp;<span class="required">*</span></label>
+            <input type="text" id="modalEtudiantFirstName" placeholder="Entrez le prenom d'etudiant" required>
+            <label for="modalEtudiantEmail">Email d'Etudiant&nbsp;<span class="required"></span></label>
+            <input type="email" id="modalEtudiantEmail" placeholder="Entrez l'email d'etudiant'">
+            <label for="modalEtudiantDepartment">Departement d'Etudiant&nbsp;<span class="required">*</span></label>
+            <select id="modalEtudiantDepartment" required>
+                <option value="">Sélectionnez un département</option>
+                <option value="1">Informatique</option>
+                <option value="2">Mathematique</option>
+                <option value="3">Physique</option>
+                <option value="4">Gestion Et Commerce</option>
+                <option value="5">Ingegnerie</option>
+            </select>
+            <button id="confirmEditBtn" class="btn-danger">Confirmer</button>
+            <button id="cancelEditBtn" class="btn-secondary">Annuler</button>
+        </div>
+    </div>
+    
+    <script src="../js/scriptEtudiant.js"></script>
+</body>
+</html>
