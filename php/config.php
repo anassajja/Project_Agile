@@ -11,6 +11,7 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     // Set the error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo 'Connected to the ' . $dbname . ' database!';
 } catch (PDOException $e) {
     // Catch any connection errors and output
     echo 'Connection failed: ' . $e->getMessage();

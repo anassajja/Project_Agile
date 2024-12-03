@@ -9,12 +9,17 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');       // Get the confirm delete button element
     const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');     // Get the cancel delete button element
     const editModal = document.getElementById('editModal');         // Get the edit modal element
-    const modalEnseignantFirstName = document.getElementById('modalEnseignantFirstName');
-    const modalEnseignantLastName = document.getElementById('modalEnseignantLastName');
-    const modalEnseignantEmail = document.getElementById('modalEnseignantEmail');
-    const modalEnseignantDepartment = document.getElementById('modalEnseignantDepartment');
-    const confirmEditBtn = document.getElementById('confirmEditBtn');
-    const cancelEditBtn = document.getElementById('cancelEditBtn');
+    const modalEnseignantFirstName = document.getElementById('modalEnseignantFirstName'); // Get the edit modal element
+    const modalEnseignantLastName = document.getElementById('modalEnseignantLastName'); // Get the edit modal element
+    const modalEnseignantEmail = document.getElementById('modalEnseignantEmail'); // Get the edit modal element
+    const modalEnseignantDepartment = document.getElementById('modalEnseignantDepartment'); // Get the edit modal element
+    const confirmEditBtn = document.getElementById('confirmEditBtn'); // Get the confirm edit button element
+    const cancelEditBtn = document.getElementById('cancelEditBtn'); // Get the cancel edit button element
+    const assignButton = document.getElementById('asignButton'); // Get the asign button element
+    const unassignButton = document.getElementById('unassignButton'); // Get the unassign button element
+    const assignEnseignantId = document.getElementById('assignEnseignantId'); // Get the assign enseignant id element
+    const assignElementId = document.getElementById('assignElementId'); // Get the assign element id element
+    const unassignEnseignantId = document.getElementById('unassignEnseignantId'); // Get the unassign enseignant id element
     let editId = null;
 
     // Fetch and display enseignants
@@ -91,6 +96,58 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
             })
             .catch(error => console.error('Error:', error)); // Log any errors to the console   
     });
+
+    // Assign enseignant to element
+    assignButton.addEventListener('click', () => { // Add a click event listener to the assign button
+        const teacher_id = assignEnseignantId.value; // Get the enseignant ID value
+        const element_id = assignElementId.value; // Get the element ID value
+        if (!teacher_id || !element_id) return alert('Le enseignant et l\'élément sont obligatoires.'); // If the enseignant or element is empty, display an alert and return 
+
+        const data = { teacher_id, element_id }; // Create a new object with the enseignant and element data to send to the server
+
+        fetch('../php/teacher/assign_teacher.php', { // Fetch the assign enseignant script
+            method: 'POST', // Use the POST method
+            headers: { 'Content-Type': 'application/json' }, // Set the content type to JSON 
+            body: JSON.stringify(data), // Convert the data object to a JSON string
+        })
+            .then(response => response.json()) // Parse the JSON response into a JavaScript object
+            .then(data => { // Display the response data
+                if (data.success) { // If the response was successful
+                    alert(data.message); // Display an alert with the success message
+                    alert('Enseignant assigné avec succès'); // Display an alert with the success message
+                    fetchTeachers(); // Refresh enseignant list
+                } else { // If the response was not successful
+                    alert(data.error); // Display an alert with the error message
+                }
+            })
+            .catch(error => console.error('Error:', error)); // Log any errors to the console
+    });
+
+    // Unassign enseignant from element
+    unassignButton.addEventListener('click', () => { // Add a click event listener to the unassign button
+        const teacher_id = unassignEnseignantId.value; // Get the enseignant ID value
+        if (!teacher_id) return alert('Le enseignant est obligatoire.'); // If the enseignant is empty, display an alert and return
+         
+        const data = { teacher_id }; // Create a new object with the enseignant data to send to the server
+
+        fetch('../php/teacher/unassign_teacher.php', { // Fetch the unassign enseignant script
+            method: 'POST', // Use the POST method
+            headers: { 'Content-Type': 'application/json' }, // Set the content type to JSON 
+            body: JSON.stringify(data), // Convert the data object to a JSON string
+        })
+            .then(response => response.json()) // Parse the JSON response into a JavaScript object
+            .then(data => { // Display the response data
+                if (data.success) { // If the response was successful
+                    alert(data.message); // Display an alert with the success message
+                    alert('Enseignant désassigné avec succès'); // Display an alert with the success message
+                    fetchTeachers(); // Refresh enseignant list
+                } else { // If the response was not successful
+                    alert(data.error); // Display an alert with the error message
+                }
+            })
+            .catch(error => console.error('Error:', error)); // Log any errors to the console
+    });
+
 
     // Open delete modal
     function openDeleteModal(id) { // Function to open the delete modal
