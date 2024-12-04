@@ -3,41 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestion des Modules</title>
+    <title>Gestion des Éléments</title>
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
     <header>
-      <h1>Gestion des Modules</h1>
+      <h1>Gestion des Éléments</h1>
     </header>
 
-    <!-- Form for Adding Modules -->
+    <!-- Form for Adding Elements -->
     <section id="form-container">
-      <h2>Ajouter / Modifier un Module</h2>
-      <form id="moduleForm">
-        <label for="moduleName">
-          Nom du Module <span class="required">*</span>
+      <h2>Ajouter / Modifier un Élément</h2>
+      <form id="elementForm">
+        <label for="elementName">
+          Nom de l'Élément <span class="required">*</span>
           <input
             type="text"
-            id="moduleName"
-            placeholder="Entrez le nom du module"
+            id="elementName"
+            placeholder="Entrez le nom de l'élément"
             required
           />
         </label>
-        <label for="moduleFiliere">
-          Filière
-          <select id="moduleFiliere"></select>
+        <label for="elementModule">
+          Module
+          <select id="elementModule"></select>
         </label>
-        <button type="button" id="saveModuleButton" class="btn-primary">
+        <button type="button" id="saveElementButton" class="btn-primary">
           Enregistrer
         </button>
       </form>
     </section>
 
-    <!-- List of Modules -->
-    <section id="moduleListContainer">
-      <h2>Liste des Modules</h2>
-      <ul id="moduleList"></ul>
+    <!-- List of Elements -->
+    <section id="elementListContainer">
+      <h2>Liste des Éléments</h2>
+      <ul id="elementList"></ul>
     </section>
 
     <!-- Delete Confirmation Modal -->
@@ -51,7 +51,7 @@
       <div class="modal-content">
         <h3 id="deleteModalHeading">Confirmer la Suppression</h3>
         <p>
-          Êtes-vous sûr de vouloir supprimer ce module ? Cette action est
+          Êtes-vous sûr de vouloir supprimer cet élément ? Cette action est
           irréversible.
         </p>
         <button id="confirmDeleteBtn" class="btn-danger">Confirmer</button>
@@ -62,25 +62,25 @@
     <!-- Edit Modal -->
     <div id="editModal" class="modal">
       <div class="modal-content">
-        <h3>Modifier un Module</h3>
-        <label for="modalModuleName"
-          >Nom du Module&nbsp;<span class="required">*</span></label
+        <h3>Modifier un Élément</h3>
+        <label for="modalElementName"
+          >Nom de l'Élément&nbsp;<span class="required">*</span></label
         >
         <input
           type="text"
-          id="modalModuleName"
-          placeholder="Entrez le nom du module"
+          id="modalElementName"
+          placeholder="Entrez le nom de l'élément"
           required
         />
-        <label for="modalModuleFiliere"
-          >Filière&nbsp;<span class="required">*</span></label
+        <label for="modalElementModule"
+          >Module&nbsp;<span class="required">*</span></label
         >
-        <select id="modalModuleFiliere" required></select>
+        <select id="modalElementModule" required></select>
         <button id="confirmEditBtn" class="btn-primary">Confirmer</button>
         <button id="cancelEditBtn" class="btn-secondary">Annuler</button>
       </div>
     </div>
 
-    <script src="../js/scriptModule.js"></script>
+    <script src="../js/scriptElement.js"></script>
   </body>
 </html>
