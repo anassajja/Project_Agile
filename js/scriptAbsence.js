@@ -57,10 +57,10 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
     saveButton.addEventListener('click', () => { // Add a click event listener to the save button
         const student_id = absenceStudent.value.trim(); // Get the absence name value and trim any leading or trailing whitespace
         const date = absenceDate.value.trim(); // Get the absence name value and trim any leading or trailing whitespace
-        const justified = absenceJustified.checked ? '1' : '0'; // Get the absence description value and trim any leading or trailing whitespace
+        const justified = absenceJustified.checked ? 1 : 0; // Get the absence description value and trim any leading or trailing whitespace
         const justification = absenceJustification.value.trim(); // Get the absence description value and trim any leading or trailing whitespace
         console.log(justification);
-        if (!student_id || !date || !justified || !justification) return alert("Tout les champs sont obligatoires !");
+        if (!student_id || !date || !justification) return alert("Tout les champs sont obligatoires !");
 
         const url = editId ? '../php/absence/edit_absence.php' : '../php/absence/add_absence.php'; // Set the URL based on whether we are adding or editing an absence
         console.log(url);
@@ -149,9 +149,9 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
     confirmEditBtn.addEventListener('click', () => { // Add a click event listener to the confirm edit button
         const student_id = modalAbsenceStudent.value.trim(); // Get the absence name value and trim any leading or trailing whitespace
         const date = modalAbsenceDate.value.trim(); // Get the absence name value and trim any leading or trailing whitespace
-        const justified = modalAbsenceJustified.checked ? '1' : '0'; 
+        const justified = modalAbsenceJustified.checked ? 1 : 0; 
         const justification = modalAbsenceJustification.value.trim(); // Get the absence description value and trim any leading or trailing whitespace
-        if (!student_id || !date || !justified || !justification) return alert('Tout les champs sont obligatoires !'); // If any field is empty, display an alert and return
+        if (!student_id || !date || !justification) return alert('Tout les champs sont obligatoires !'); // If any field is empty, display an alert and return
 
         const data = { id: editId, student_id, date, justified, justification }; // Create a new object with the absence data to send to the server
         console.log('Data to be sent:', data); // Log the data being sent
