@@ -11,33 +11,50 @@
         <h1>Gestion des Absences</h1>
     </header>
 
-    <!-- Form for Adding/Editing Departments -->
+    <!-- Form for Adding/Editing Absences -->
     <section id="form-container" aria-labelledby="form-heading">
         <h2 id="form-heading">Ajouter / Modifier une Absence</h2>
-        <form id="departmentForm">
-            <label for="departmentName">
-                Nom d'Absence <span class="required" aria-hidden="true">*</span>
-                <input type="text" id="departmentName" placeholder="Entrez le nom du département" required aria-required="true">
+        <form id="absenceForm">
+            <label for ="absenceStudent">
+                Etudiant <span class="required" aria-hidden="true">*</span>
+                <select id="absenceStudent" required aria-required="true">
+                    <option value="">Sélectionnez un etudiant</option>
+                    <option value="1">Alice Smith</option>
+                    <option value="2">Bob Johnson</option>
+                    <option value="3">Charlie Brown</option>
+                    <option value="4">David Davis</option>
+                    <option value="5">Eve Wilson</option>
+                    <option value="6">Frank Miller</option>
+                </select>
             </label>
-            <label for="departmentDescription">
-                Description
-                <input type="text" id="departmentDescription" placeholder="Entrez la description du département">
+            <br>
+            <label for="absenceDate">
+                Date <span class="required" aria-hidden="true">*</span>
+                <input type="date" id="absenceDate" required aria-required="true">
+            </label>
+            <br>
+            <label for="absenceJustified"> Justifiée </label>
+            <input type="checkbox" id="absenceJustified" aria-required="true"> // required attribute is not supported on checkbox
+            <br>
+            <label for="absenceJustification">
+                Justification
+                <input type="text" id="absenceJustification" placeholder="Entrez la justification d'absence">
             </label>
             <button type="button" id="saveButton" class="btn-primary">Enregistrer</button>
         </form>
     </section>
 
-    <!-- List of Departments -->
-    <section aria-labelledby="departmentListHeading">
-        <h2 id="departmentListHeading">Liste des Absences</h2>
-        <ul id="departmentList" class="department-list" role="list"></ul>
+    <!-- List of Absences -->
+    <section aria-labelledby="absenceListHeading">
+        <h2 id="absenceListHeading">Liste des Absences</h2>
+        <ul id="absenceList" class="absence-list" role="list"></ul>
     </section>
 
     <!-- Delete Confirmation Modal -->
     <div id="deleteModal" class="modal" role="dialog" aria-labelledby="deleteModalHeading" aria-hidden="true">
         <div class="modal-content">
             <h3 id="deleteModalHeading">Confirmer la Suppression</h3>
-            <p>Êtes-vous sûr de vouloir supprimer ce département ? Cette action est irréversible.</p>
+            <p>Êtes-vous sûr de vouloir supprimer cette absence ? Cette action est irréversible.</p>
             <button id="confirmDeleteBtn" class="btn-danger">Confirmer</button>
             <button id="cancelDeleteBtn" class="btn-secondary">Annuler</button>
         </div>
@@ -47,10 +64,22 @@
     <div id="editModal" class="modal">
         <div class="modal-content">
             <h3>Modifier une Absence</h3>
-            <label for="modalDepartmentName">Nom d'absence <span class="required">*</span></label>
-            <input type="text" id="modalDepartmentName" placeholder="Entrez le nom du département" required>
-            <label for="modalDepartmentDescription">Description</label>
-            <input type="text" id="modalDepartmentDescription" placeholder="Entrez la description du département">
+            <label for="modalAbsenceStudent">Etudiant&nbsp;<span class="required">*</span></label>
+            <select id="modalAbsenceStudent" required>
+                <option value="">Sélectionnez un etudiant</option>
+                <option value="1">Alice Smith</option>
+                <option value="2">Bob Johnson</option>
+                <option value="3">Charlie Brown</option>
+                <option value="4">David Davis</option>
+                <option value="5">Eve Wilson</option>
+                <option value="6">Frank Miller</option>
+            </select>
+            <label for="modalAbsenceDate">Date&nbsp;<span class="required">*</span></label>
+            <input type="date" id="modalAbsenceDate" required>
+            <label for="modalAbsenceJustified">Justifiée&nbsp;<span class="required">*</span></label>
+            <input type="checkbox" id="modalAbsenceJustified">
+            <label for="modalAbsenceJustification">Justification&nbsp;<span class="required">*</span></label>
+            <input type="text" id="modalAbsenceJustification" placeholder="Entrez la justification d'absence">
             <button id="confirmEditBtn">Confirmer</button>
             <button id="cancelEditBtn">Annuler</button>
         </div>

@@ -4,7 +4,7 @@ require '../config.php'; // Include the database configuration file to connect t
 
 use PhpOffice\PhpSpreadsheet\IOFactory; // Include the IOFactory class from the PhpSpreadsheet library
 
-$inputFileName = 'students1.xlsx'; // The file name of the Excel file to be loaded
+$inputFileName = 'students.xlsx'; // The file name of the Excel file to be loaded
 $spreadsheet = IOFactory::load($inputFileName); // Load the Excel file
 $sheet = $spreadsheet->getActiveSheet(); // Get the active sheet from the Excel file
 $data = $sheet->toArray(); // Convert the sheet data to an array

@@ -98,10 +98,21 @@ $role = isset($_SESSION['role']) ? htmlspecialchars($_SESSION['role']) : 'Not de
         <div class="col-md-3">
             <div class="menu-card" onclick="window.location.href='../html/module.html';" style="cursor: pointer;">
                 <div class="icon">
-                    <i class="fas fa-cogs"></i>
+                    <i class="fas fa-book-open"></i>
                 </div>
                 <h5>Module</h5>
                 <p>View or Create Modules</p>
+            </div>
+        </div>
+
+        <!-- Element -->
+        <div class="col-md-3">
+            <div class="menu-card" onclick="window.location.href='../html/element.html';" style="cursor: pointer;">
+                <div class="icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h5>Element</h5>
+                <p>Manage Elements</p>
             </div>
         </div>
 

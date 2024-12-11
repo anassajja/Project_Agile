@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
     // Open edit modal
     function openEditModal(id, first_name, last_name, email, department_id) { // Function to open the edit modal
         editId = id;
-        modalEtudiantFirstName.value = first_name; // Populate fields in the modal
+        modalEtudiantFirstName.value = first_name; // Populate fields in the modal 
         modalEtudiantLastName.value = last_name; // Populate fields in the modal
         modalEtudiantEmail.value = email; // Populate fields in the modal
         modalEtudiantDepartment.value = department_id; // Populate fields in the modal

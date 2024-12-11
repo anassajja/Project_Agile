@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () { // DOMContentLoaded 
     const modalDepartmentDescription = document.getElementById('modalDepartmentDescription');
     const confirmEditBtn = document.getElementById('confirmEditBtn');
     const cancelEditBtn = document.getElementById('cancelEditBtn');
-    let editId = null;
+    let editId = null; // Variable to store the ID of the department being edited
 
     // Fetch and display departments
     function fetchDepartments() { // Function to fetch and display departments
